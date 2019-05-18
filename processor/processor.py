@@ -234,14 +234,15 @@ def readout(lines, matches):
                         for value in toc.values()}
 
             specials = matches.get('specials', {})
+            for special in specials.values():
+                assert 'display' in special and 'enum' in special
             specialsspace = {value['enum']:
                              lambda line, value=value: self.lines.append(
                                  {'line': line[2], 'emphasis': line[0],
                                   'num': self.num,
                                   'attributes': self.hierarchy(line) +
-                                  [{'enum': value['enum'],
-                                    'display': value['display'], 'num': 0,
-                                    'precedence': 0, 'primary': True}]})
+                                  [{ **specials, 'num': 0, 'precedence': 0,
+                                    'primary': True}]})
                              for value in specials.values()}
 
             self.searchspace = {**syntaxspace, **tocspace, **specialsspace}
