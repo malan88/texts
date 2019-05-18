@@ -1,0 +1,13 @@
+toc:
+    "ACT":
+        display: Act
+        precedence: 1
+        aggregate: False
+    "SCENE":
+        display: Scene
+        precedence: 2
+        aggregate: False
+specials:
+    '^[A-Z]+\.$':
+        display: Character
+        enum: char
