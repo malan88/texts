@@ -241,7 +241,7 @@ def readout(lines, matches):
                                  {'line': line[2], 'emphasis': line[0],
                                   'num': self.num,
                                   'attributes': self.hierarchy(line) +
-                                  [{ **specials, 'num': 0, 'precedence': 0,
+                                  [{**value, 'num': 0, 'precedence': 0,
                                     'primary': True}]})
                              for value in specials.values()}
 
