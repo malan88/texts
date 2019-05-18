@@ -8,6 +8,6 @@ toc:
         precedence: 2
         aggregate: False
 specials:
-    '^[A-Z]+\.$':
+    '^[A-Z ]+\.$':
         display: Character
         enum: char
