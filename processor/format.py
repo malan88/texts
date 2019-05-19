@@ -22,6 +22,8 @@ import re
 
 # Constants for re.sub
 EMDASH = (re.compile('--'), '—')
+HASH = lambda _: (re.compile(r'^ {' + str(_[0]) + r'}(?! )'), '#' * int(_[1]))
+BRACKET = lambda _: (re.compile('^ {' + _ + '}(?! )([^[]*)\n'), r'[\1]\n')
 
 
 def loop(FIN, FOUT, patterns):
@@ -35,12 +37,7 @@ def loop(FIN, FOUT, patterns):
 def get_hash_patterns(hashes):
     hashes = [hash.split('=') for hash in hashes]
     hashes = sorted(hashes, key=lambda hash: hash[0], reverse=True)
-    _hashes = []
-    for h in hashes:
-        pattern = re.compile(r'^ {' + str(h[0]) + r'}(?! )')
-        replace = '#' * int(h[1])
-        _hashes.append((pattern, replace))
-    return _hashes
+    return [HASH(h) for h in hashes]
 
 
 def main(FIN, FOUT, args):
@@ -48,10 +45,7 @@ def main(FIN, FOUT, args):
     if args.hash:
         patterns.extend(get_hash_patterns(args.hash.split(',')))
     if args.bracket:
-        pattern = re.compile('^ {' + args.bracket + '}(?! )([^[]*)\n')
-        replace = r'[\1]\n'
-        patterns.append((pattern, replace))
-    print(patterns)
+        patterns.append(BRACKET(args.bracket))
     loop(FIN, FOUT, patterns)
 
 
