@@ -1,6 +1,7 @@
-1. bible.anno.wiki          -->     Edition Page for KJV
-    - We need (due to this case in particular) to change editions to titled
-      versions
-2. bill.anno.wiki           -->     Writer Page for William Shakespeare
-3. shakespeare.anno.wiki    -->     Writer Page for William Shakespeare
-4. twain.anno.wiki          -->     Writer Page for Mark Twain
+1. bible.anno.wiki          -->     [[Edition:King James Bible]]
+2. bill.anno.wiki           -->     [[Writer:William Shakespeare]]
+3. shakespeare.anno.wiki    -->     [[Writer:William Shakespeare]]
+4. twain.anno.wiki          -->     [[Writer:Mark Twain]]
+5. mark.anno.wiki           -->     [[Writer:Mark Twain]]
+6. dickens.anno.wiki        -->     [[Writer:Charles Dickens]]
+7. plato.anno.wiki          -->     [[Writer:Plato]]
