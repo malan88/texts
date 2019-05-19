@@ -37,7 +37,7 @@ def get_hash_patterns(hashes):
     hashes = sorted(hashes, key=lambda hash: hash[0], reverse=True)
     _hashes = []
     for h in hashes:
-        pattern = re.compile(r'^ {' + str(h[0]) + r'}')
+        pattern = re.compile(r'^ {' + str(h[0]) + r'}(?! )')
         replace = '#' * int(h[1])
         _hashes.append((pattern, replace))
     return _hashes
@@ -47,7 +47,11 @@ def main(FIN, FOUT, args):
     patterns = [EMDASH]
     if args.hash:
         patterns.extend(get_hash_patterns(args.hash.split(',')))
-
+    if args.bracket:
+        pattern = re.compile('^ {' + args.bracket + '}(?! )([^[]*)\n')
+        replace = r'[\1]\n'
+        patterns.append((pattern, replace))
+    print(patterns)
     loop(FIN, FOUT, patterns)
 
 
@@ -61,7 +65,7 @@ if __name__ == '__main__':
     parser.add_argument('--hash', action='store', type=str,
                         help="A comma-separated list of n number of spaces to "
                         "convert to m number of hashes, e.g. '3=2,5=4'")
-    parser.add_argument('-b', '--bracket', action='store', type=int,
+    parser.add_argument('-b', '--bracket', action='store', type=str,
                         help="The number of spaces to match at the beginning "
                         "of a line to surround it with brackets for a stage "
                         "direction.")
