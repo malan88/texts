@@ -434,8 +434,7 @@ That face of hers again. Therefore be gone
 Without our grace, our love, our benison.
 Come, noble Burgundy.
 
- [_Flourish. Exeunt Lear, Burgundy, Cornwall, Albany, Gloucester and
- Attendants._]
+ [_Flourish. Exeunt Lear, Burgundy, Cornwall, Albany, Gloucester and Attendants._]
 
 FRANCE.
 Bid farewell to your sisters.
@@ -2274,14 +2273,14 @@ break thy neck with following it; but the great one that goes upward,
 let him draw thee after. When a wise man gives thee better counsel,
 give me mine again: I would have none but knaves follow it, since a
 fool gives it.
-          That sir which serves and seeks for gain,
-             And follows but for form,
-          Will pack when it begins to rain,
-             And leave thee in the storm.
-          But I will tarry; the fool will stay,
-             And let the wise man fly:
-          The knave turns fool that runs away;
-             The fool no knave perdy.
+   That sir which serves and seeks for gain,
+     And follows but for form,
+   Will pack when it begins to rain,
+     And leave thee in the storm.
+   But I will tarry; the fool will stay,
+     And let the wise man fly:
+   The knave turns fool that runs away;
+     The fool no knave perdy.
 
 KENT.
 Where learn’d you this, fool?
@@ -2705,8 +2704,7 @@ ACT III
 
 SCENE I. A Heath.
 
- A storm with thunder and lightning. Enter Kent and a Gentleman,
- severally.
+ A storm with thunder and lightning. Enter Kent and a Gentleman, severally.
 
 KENT.
 Who’s there, besides foul weather?
@@ -3358,7 +3356,7 @@ It shall be done; I will arraign them straight.
 
 EDGAR.
 Look, where he stands and glares! Want’st thou eyes at trial, madam?
-  Come o’er the bourn, Bessy, to me.
+   Come o’er the bourn, Bessy, to me.
 
 FOOL.
    Her boat hath a leak,
@@ -3664,8 +3662,7 @@ CORNWALL.
 See’t shalt thou never. Fellows, hold the chair.
 Upon these eyes of thine I’ll set my foot.
 
- [_Gloucester is held down in his chair, while Cornwall plucks out one
- of his eyes and sets his foot on it._]
+ [_Gloucester is held down in his chair, while Cornwall plucks out one of his eyes and sets his foot on it._]
 
 GLOUCESTER.
 He that will think to live till he be old,
@@ -3742,8 +3739,7 @@ Turn out that eyeless villain. Throw this slave
 Upon the dunghill. Regan, I bleed apace:
 Untimely comes this hurt: give me your arm.
 
- [_Exit Cornwall, led by Regan; Servants unbind Gloucester and lead him
- out._]
+ [_Exit Cornwall, led by Regan; Servants unbind Gloucester and lead him out._]
 
 SECOND SERVANT.
 I’ll never care what wickedness I do,
@@ -5081,8 +5077,7 @@ ACT V
 
 SCENE I. The Camp of the British Forces near Dover.
 
- Enter, with drum and colours Edmund, Regan, Officers, Soldiers and
- others.
+ Enter, with drum and colours Edmund, Regan, Officers, Soldiers and others.
 
 EDMUND.
 Know of the Duke if his last purpose hold,
@@ -5242,8 +5237,7 @@ Stands on me to defend, not to debate.
 
 SCENE II. A field between the two Camps.
 
- Alarum within. Enter with drum and colours, Lear, Cordelia and their
- Forces, and exeunt.
+ Alarum within. Enter with drum and colours, Lear, Cordelia and their Forces, and exeunt.
 
  Enter Edgar and Gloucester.
 
@@ -5280,8 +5274,7 @@ And that’s true too.
 
 SCENE III. The British Camp near Dover.
 
- Enter in conquest with drum and colours, Edmund, Lear and Cordelia as
- prisoners; Officers, Soldiers, &c.
+ Enter in conquest with drum and colours, Edmund, Lear and Cordelia as prisoners; Officers, Soldiers, &c.
 
 EDMUND.
 Some officers take them away: good guard
@@ -5511,8 +5504,7 @@ Again!
 HERALD.
 Again!
 
- Third trumpet. Trumpet answers within. Enter Edgar, armed, preceded by
- a trumpet.
+ Third trumpet. Trumpet answers within. Enter Edgar, armed, preceded by a trumpet.
 
 ALBANY.
 Ask him his purposes, why he appears
@@ -5793,8 +5785,7 @@ The gods defend her! Bear him hence awhile.
 
  [_Edmund is borne off._]
 
- Enter Lear with Cordelia dead in his arms; Edgar, Officer and others
- following.
+ Enter Lear with Cordelia dead in his arms; Edgar, Officer and others following.
 
 LEAR.
 Howl, howl, howl, howl! O, you are men of stone.
