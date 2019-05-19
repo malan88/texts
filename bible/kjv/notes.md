@@ -59,3 +59,6 @@ The book regex is:
     )
 /
 ```
+```
+/((Book|Ecclesiastes|Song|Lamentations|Gospel|Acts|Epistle|Devine)|(^(Ezra|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Malachi)$))/
+```
