@@ -63,7 +63,8 @@ description: |
     Lear.”
 edition:
     primary: true
-    title: The First Folio
+    title: PG's First Folio King Lear
+    verse: true
     number: 1
     publication_date: 1623-01-01
     description: |
