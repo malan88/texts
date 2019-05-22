@@ -1,0 +1,5 @@
+toc:
+    "Sonnet [IVXLC]":
+        display: Sonnet
+        precedence: 1
+        aggregate: False
