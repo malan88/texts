@@ -26,12 +26,14 @@ HASH = lambda _: (re.compile(r'^ {' + str(_[0]) + r'}(?! )'), '#' * int(_[1]))
 BRACKET = lambda _: (re.compile('^ {' + _ + '}(?! )([^[]*)\n'), r'[\1]\n')
 
 
-def loop(FIN, FOUT, patterns):
+def loop(FIN, patterns):
     """The main loop of the program."""
+    lines = []
     for line in FIN:
         for pattern in patterns:
             line = re.sub(*pattern, line)
-        FOUT.write(line)
+        lines.append(line)
+    return lines
 
 
 def get_hash_patterns(hashes):
@@ -46,7 +48,8 @@ def main(FIN, FOUT, args):
         patterns.extend(get_hash_patterns(args.hash.split(',')))
     if args.bracket:
         patterns.append(BRACKET(args.bracket))
-    loop(FIN, FOUT, patterns)
+    fout.write(loop(FIN, patterns))
+    fout.close()
 
 
 if __name__ == '__main__':
