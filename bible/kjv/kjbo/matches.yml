@@ -1,0 +1,13 @@
+toc:
+    'BOOKS':
+        display: Testment
+        precedence: 1
+        aggregate: False
+    '^[0-9]*[A-Z ]*$':
+        display: Book
+        precedence: 2
+        aggregate: False
+    '^[0-9]*[A-Z ]*[0-9]+$':
+        display: Chapter
+        precedence: 3
+        aggregate: False
