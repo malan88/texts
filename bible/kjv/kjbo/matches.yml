@@ -11,3 +11,7 @@ toc:
         display: Chapter
         precedence: 3
         aggregate: False
+specials:
+    '^[0-9]+:':
+        display: Verse
+        enum: verse
