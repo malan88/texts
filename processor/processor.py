@@ -5,6 +5,8 @@ import re
 import yaml
 import json
 
+from string import ascii_lowercase as lowercase
+
 """Process the pre-formatted and pre-processed (with preprocessor.py) texts into
 a json format for the insert scripts to process into the ICC's database.
 """
@@ -25,9 +27,9 @@ WORD_BOUNDARY = re.compile(r'\w+|\W')
 def readin(fin, matches):
     """Read the file into the script, use the matches dictionary from the yaml
     templating style to process headings and special cases. Returns a list of
-    lines of tuple form:
+    lines of dictionary form:
 
-        (emphasis_status, lineclass, line)
+        {'em': emphasis_status, 'enum': lineclass, 'body': line}
 
     Where emphasis_status is an enum code for whether a line needs to be
     prefixed or postfixed with an `<em>` or `</em>` tag. These are explained
@@ -60,7 +62,7 @@ def readin(fin, matches):
         # method is actually quite elegant. Like a turing machine. The first if
         # statement in the `process_line()` method is where the switch is
         # processed.
-        emphasis = 'nem'
+        em = 'nem'
         emswitch = {
             'nem': 'oem',
             'oem': 'em',
@@ -76,15 +78,22 @@ def readin(fin, matches):
             """
             syntaxspace = {
                 BLANK: lambda line: self.lines.append(
-                    (self.emphasis, 'blank', line.strip())),
+                    {'em': self.em,
+                     'enum': 'blank',
+                     'body': line.strip()}),
                 HR: lambda line: self.lines.append(
-                    (self.emphasis, 'hr', '<hr>')),
+                    {'em': self.em,
+                     'enum': 'hr',
+                     'body': '<hr>'}),
                 QUOTE: lambda line: self.lines.append(
-                    (self.emphasis, 'quo', line.strip('>').strip())),
+                    {'em': self.em,
+                     'enum': 'quo',
+                     'body': line.strip('>').strip()}),
                 PRE: lambda line: self.switch_pre(),
                 INDENT: lambda line: self.lines.append(
-                    (self.emphasis, f'ind{line.count("#")}',
-                     line.strip('#').strip()))
+                    {'em': self.em,
+                     'enum': f'ind{line.count("#")}',
+                     'body': line.strip('#').strip()})
             }
 
             toc = matches.get('toc', {})
@@ -93,18 +102,18 @@ def readin(fin, matches):
             tocspace = {
                 re.compile(key):
                 lambda line, key=key, value=value: self.lines.append(
-                    (self.emphasis,
-                     value['precedence'],
-                     line.strip())
-                )
+                    {'em': '---',
+                     'enum': value["precedence"],
+                     'body': line.strip()})
                 for (key, value) in toc.items()
             }
 
             specialsspace = {
                 re.compile(key):
                 lambda line, value=value: self.lines.append(
-                    (self.emphasis, value['enum'], line.strip())
-                )
+                    {'em': self.em,
+                     'enum': value['enum'],
+                     'body': line.strip()})
                 for key, value in specials.items()
             }
 
@@ -117,7 +126,7 @@ def readin(fin, matches):
             # if the # of underscores is odd
             if line.count('_') % 2:
                 # Process the emphasis turing machine.
-                self.emphasis = self.emswitch[self.emphasis]
+                self.em = self.emswitch[self.em]
 
             if self.pre:
                 # check if the line is a pre tag to flip the switch before we
@@ -125,7 +134,9 @@ def readin(fin, matches):
                 if re.search(PRE, line):
                     self.searchspace[PRE](line)     # flip the switch
                 else:
-                    self.lines.append((self.emphasis, 'pre', line.strip()))
+                    self.lines.append({'em': self.em,
+                                       'enum': 'pre',
+                                       'body': line.strip()})
             else:
                 triggered = False
                 for regex in self.searchspace:
@@ -136,11 +147,13 @@ def readin(fin, matches):
 
                 # if the regex searchspace never made a match, it's just text.
                 if not triggered:
-                    self.lines.append((self.emphasis, 'text', line.strip()))
+                    self.lines.append({'em': self.em,
+                                       'enum': 'text',
+                                       'body': line.strip()})
 
-            if self.emphasis == 'oem' or self.emphasis == 'cem':
+            if self.em == 'oem' or self.em == 'cem':
                 # 'cem' and 'oem' are one time codes.
-                self.emphasis = self.emswitch[self.emphasis]
+                self.em = self.emswitch[self.em]
 
     switcher = Switch(matches)
     for line in fin:
@@ -151,33 +164,29 @@ def readin(fin, matches):
 
 def readout(lines, matches):
     """Read the list of tuples output from readin and return a list of
-    context-aware dictionaries with the following key, value pairs:
+    context-aware dictionaries with the following key, value pairs for `toc`s
+    and `line`s:
 
-    - `line`: The actual line, stripped of whitespace and unnecessary
-      formatting.
-    - `emphasis`: A number between 0 and 3 corresponding to the enumerated
-      emphasis codes to be translated upon load from the orm.
-    - `num`: The line number within the text.
-    - `attributes`: A dictionary of attributes that describe the context and
-      display patterns of the line. They consist of the following key, value
-      pairs:
-        - `enum`: the actual enum-like code that will be used to generate css
-          classes for displaying the lines
-        - `display`: the human-readable (or, prettier) version of `enum`, i.e.,
-          if the enum is `hr`, the display is 'Horizontal Rule'. This is
-          essential for hierarchy attrs, because they are all simply `lvl<n>` in
-          the enum.
-        - `num`: the number corresponding to the attribute, i.e., chapter 1,
-          book 1, etc. This number is 0 for all non-hierarchy attributes.
-        - `precedence`: the precedence value of table-of-contents hierarchies
-          (see Table of Contents Hierarchies in the documentation for more
-          information). A 0 will be used for attributes which do not have
-          precedence.
-        - `primary`: The status of the particular attribute being primary or
-          not; that is to say: if the particular line is the 'Chapter' heading,
-          the `primary` value will be `True`. All else will be `False`. Every
-          line has one, and only one, primary. It is the classification of the
-          line.
+    A line of text
+    --------------
+    `body` : str
+        The actual body of the line/toc, stripped of whitespace and unnecessary
+        formatting.
+    `num`: int
+        The numeric attribute for the line, which is the chapter/book number for
+        a TOC and the line number for a line.
+    `enum` : str
+        An enum-type string, of the form `lvln>[display]` in the case of tocs.
+
+    *line only*
+    `emphasis` : int
+        A number between 0 and 3 corresponding to the enumerated emphasis codes
+        to be translated upon load from the orm (only on lines)
+
+    *toc only*
+    `precedence` : int
+        The precedence level of the toc (i.e., 1 for the highest precedence, 2
+        for lower, etc.)
     """
 
     class Switch:
@@ -198,123 +207,71 @@ def readout(lines, matches):
         lines = []
         num = 0
         prevline = ''
+        # enums to search for special space. We're never going to have to worry
+        # about more than 6 indents. That would be ridiculous. (Honestly, more
+        # than 4 is ridiculous.)
+        SPECIALS = ['blank', 'hr', 'quo', 'pre', 'ind1', 'ind2', 'ind3', 'ind4',
+                    'ind5', 'ind6']
+        SPECIAL = lambda self, line: self.lines.append({**line,
+                                                        'num': self.num})
+        TEXT = lambda self, line, enum: self.lines.append(
+            {'enum': enum,
+             'num': self.num,
+             'body': line['body'],
+             'em': line['em']})
 
         def __init__(self, matches):
-            """Create the non-trivial class attributes."""
-            # attribute dictionaries for specific enums
-            DEFAULT = {'num': 0, 'precedence': 0, 'primary': True }
-            HR = {'enum': 'hr', 'display': 'Horizontal Rule', **DEFAULT}
-            QUO = {'enum': 'quo', 'display': 'Quote', **DEFAULT}
-            PRE = {'enum': 'pre', 'display': 'Preformatted Text', **DEFAULT}
-            syntaxspace = {
-                'blank': lambda line: None,
-                'hr': lambda line: self.lines.append(
-                    {'line': line[2], 'emphasis': 'nem', 'num': self.num,
-                     'attributes': self.hierarchy(line) + [HR]}),
-                'quo': lambda line: self.lines.append(
-                    {'line': line[2], 'emphasis': line[0], 'num': self.num,
-                     'attributes': self.hierarchy(line) + [QUO]}),
-                'pre': lambda line: self.lines.append(
-                    {'line': line[2], 'emphasis': line[0], 'num': self.num,
-                     'attributes': self.hierarchy(line) + [PRE]}),
-                INDENT_ENUM: lambda line: self.lines.append(
-                    {'line': line[2], 'emphasis': line[0], 'num': self.num,
-                     'attributes': self.hierarchy(line) +
-                     [{'enum': line[1], 'display': 'Indent', **DEFAULT}]
-                     }
-                )
-            }
-
+            """Create the necessaries for toc processing."""
             toc = matches.get('toc', {})
-            tocspace = {value['precedence']:
-                        lambda line, value=value: self.lines.append(
-                            {'line': line[2], 'emphasis': line[0],
-                             'num': self.num,
-                             'attributes': self.hierarchy(line)})
-                        for value in toc.values()}
-
-            specials = matches.get('specials', {})
-            for special in specials.values():
-                assert 'display' in special and 'enum' in special
-            specialsspace = {value['enum']:
+            self.tocspace = {value['precedence']:
                              lambda line, value=value: self.lines.append(
-                                 {'line': line[2], 'emphasis': line[0],
-                                  'num': self.num,
-                                  'attributes': self.hierarchy(line) +
-                                  [{**value, 'num': 0, 'precedence': 0,
-                                    'primary': True}]})
-                             for value in specials.values()}
+                                 {'body': line['body'],
+                                  'num': self.tocnums[line['enum']][0],
+                                  'precedence': line['enum'],
+                                  'enum': value['enum']})
+                                 for value in toc.values()}
 
-            self.searchspace = {**syntaxspace, **tocspace, **specialsspace}
-
-            self.tocnums = {value['precedence']:
-                            {'num': 0, 'aggregate': value['aggregate'],
-                             'display': value['display']}
+            # create a dictionary of lists that maps so:
+            #       <int:precedence>: [<int:current_num>, <bool:aggregate>]
+            self.tocnums = {value['precedence']: [0, value['aggregate']]
                             for value in toc.values()}
             self.maxtoc = max(self.tocnums.keys())
 
-        def update_toc_nums(self, line):
-            """Update the table of contents numbers. If line[1] is not an
+        def update_toc_nums(self, precedence):
+            """Update the table of contents numbers. If line['enum'] is not an
             integer, will cause errors. Not to be suppressed.
             """
-            self.tocnums[line[1]]['num'] += 1
+            self.tocnums[precedence][0] += 1
             # Reset all numbers of lower precedence to 1 if they are not
             # supposed to aggregate.
-            for i in range(line[1]+1, self.maxtoc+1):
-                if not self.tocnums[i]['aggregate']:
-                    self.tocnums[i]['num'] = 0
-
-        def hierarchy(self, line):
-            """This method returns a list of toc hierarchy dictionaries. They
-            will be used to process attributes per line.
-            """
-            attrs = []
-            for i in range(1, self.maxtoc+1):
-                primary = line[1] == i
-                num = self.tocnums[i]['num']
-                if num > 0:
-                    attrs.append(
-                        {'enum': f'lvl{i}',
-                        'display': self.tocnums[i]['display'],
-                        'num': self.tocnums[i]['num'],
-                        'precedence': i,
-                        'primary': primary})
-            return attrs
+            for i in range(precedence+1, self.maxtoc+1):
+                # if not aggregate
+                if not self.tocnums[i][1]:
+                    # reset
+                    self.tocnums[i][0] = 0
 
         def process_line(self, line):
             """This method process the actual line, using all of the other
             methods to format the line dictionary, and appends it to the list
             `self.lines`.
             """
-            if not line[1] == 'blank':
+            current = line['enum']
+            if isinstance(current, int):
+                # if the current enum is an int it is a toc
+                self.update_toc_nums(current)
+                self.tocspace[current](line)
+                self.prevline = current
+                return
+            if line['enum'] != 'blank':
                 self.num += 1
-            triggered = False
-            for enum in self.searchspace:
-                match = False
-                try:
-                    match = re.match(enum, str(line[1]))
-                except:
-                    match = (str(enum) in str(line[1]))
-                if match:
-                    if enum in self.tocnums.keys():
-                        self.update_toc_nums(line)
-                    self.searchspace[enum](line)
-                    triggered = True
-                    self.prevline = enum
-                    break
-            if not triggered:
-                normal_line =  {'enum': 'l', 'display': 'Text Line',
-                                'num': self.num, 'precedence': 0, 'primary': True}
-                first_line = {'enum': 'fl',
-                              'display': 'First Text Line of Paragraph',
-                              'num': self.num, 'precedence': 0, 'primary': True}
-                classification = first_line if self.prevline == 'blank' else \
-                    normal_line
-                self.lines.append(
-                    {'line': line[2],
-                     'attributes': self.hierarchy(line) + [classification],
-                     'emphasis': line[0], 'num': self.num})
-                self.prevline = classification['enum']
+            if current in self.SPECIALS:
+                self.SPECIAL(line)
+                self.prevline = current
+                return
+            # test if it is a first line or not
+            enum = 'fl' if self.prevline == 'blank' else 'l'
+            self.TEXT(line, enum)
+            self.prevline = enum
 
     switcher = Switch(matches)
     for line in lines:

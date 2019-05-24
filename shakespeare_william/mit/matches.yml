@@ -1,13 +1,12 @@
 toc:
     'ACT':
-        display: Act
+        enum: Act
         precedence: 1
         aggregate: False
     'SCENE':
-        display: Scene
+        enum: Scene
         precedence: 2
         aggregate: False
 specials:
     '^(?!ACT)[A-Z ]+$':
-        display: Character
         enum: char

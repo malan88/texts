@@ -1,6 +1,5 @@
 toc:
     '^I+$':
-        display: Chapter
+        enum: Chapter
         precedence: 1
         aggregate: False
-specials: {}

@@ -1,17 +1,16 @@
 toc:
     "BOOK|EPILOGUE":
-        display: Book
+        enum: Book
         precedence: 1
         aggregate: False
     "PART":
-        display: Part
+        enum: Part
         precedence: 2
         aggregate: False
     "CHAPTER":
-        display: Chapter
+        enum: Chapter
         precedence: 3
         aggregate: False
 specials:
     "^\[.*\]$":
-        display: Stage
         enum: stg

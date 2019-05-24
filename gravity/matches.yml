@@ -1,5 +1,5 @@
 toc:
     "^[0-9]$":
-        display: Stanza
+        enum: Stanza
         precedence: 1
         aggregate: False

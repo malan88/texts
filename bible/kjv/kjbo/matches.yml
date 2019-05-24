@@ -1,17 +1,16 @@
 toc:
     'BOOKS':
-        display: Testment
+        enum: Testament
         precedence: 1
         aggregate: False
     '^[0-9]*[A-Z ]*$':
-        display: Book
+        enum: Book
         precedence: 2
         aggregate: False
     '^[0-9]*[A-Z ]*[0-9]+$':
-        display: Chapter
+        enum: Chapter
         precedence: 3
         aggregate: False
 specials:
     '^[0-9]+:':
-        display: Verse
         enum: verse
