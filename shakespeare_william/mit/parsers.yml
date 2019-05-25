@@ -10,7 +10,7 @@ parenttags:
 formatters:
     'lambda l: hasattr(l, "name") and (l.name == "p" or l.name == "i")':
         'lambda l: f"[_{l.get_text()}_]"'
-    'lambda l: hasattr(l.attrs, "name") and l.attrs["name"].startswith("speech")':
+    'lambda l: hasattr(l, "attrs") and "name" in l.attrs and l.attrs["name"].startswith("speech")':
         'lambda l: f"{l.get_text().upper()}."'
     'lambda l: True':
         'lambda l: l.get_text()'

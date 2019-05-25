@@ -8,5 +8,5 @@ toc:
         precedence: 2
         aggregate: False
 specials:
-    '^(?!ACT)[A-Z ]+$':
+    '^(?!ACT)[A-Z ]+\.$':
         enum: char

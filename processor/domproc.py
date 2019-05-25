@@ -13,7 +13,7 @@ def descend(tag, parenttags, lines):
         lines.append(tag)
 
 
-def reduceandfilter(play, parenttags, filtertags, filters):
+def reduceandfilter(play, parenttags, filtertags, filters, *args, **kwargs):
     """Reduce and filter a dom into the constituent lines that are necessary.
     This is totally a misnomer (reduce). Oh well.
     """
