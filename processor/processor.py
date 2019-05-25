@@ -176,7 +176,7 @@ def readout(lines, matches):
         The numeric attribute for the line, which is the chapter/book number for
         a TOC and the line number for a line.
     `enum` : str
-        An enum-type string, of the form `lvln>[display]` in the case of tocs.
+        An enum-type string.
 
     *line only*
     `emphasis` : int
@@ -256,14 +256,15 @@ def readout(lines, matches):
             `self.lines`.
             """
             current = line['enum']
+            if current == 'blank':
+                return
             if isinstance(current, int):
                 # if the current enum is an int it is a toc
                 self.update_toc_nums(current)
                 self.tocspace[current](line)
                 self.prevline = current
                 return
-            if line['enum'] != 'blank':
-                self.num += 1
+            self.num += 1
             if current in self.SPECIALS:
                 self.SPECIAL(line)
                 self.prevline = current
