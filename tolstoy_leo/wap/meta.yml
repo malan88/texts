@@ -26,8 +26,9 @@ description: |
 edition:
     primary: true
     title: null
-    number: 1
-    publication_date: 1904-01-01
+    num: 1
+    deepest:
+    published: 1904-01-01
     translator:
         - name: Constance Garnett
           family_name: Garnett

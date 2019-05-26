@@ -42,8 +42,9 @@ description: |
 edition:
     primary: true
     title: King James Bible
-    number: 1
-    publication_date: 1611-01-01
+    num: 1
+    deepest: 3
+    published: 1611-01-01
     description: |
         From Wikipedia
         ==============

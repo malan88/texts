@@ -47,11 +47,12 @@ edition:
       \ various cultural and\npolitical contexts around the world.\n"
     family_name: Shakespeare
     name: William Shakespeare
+  deepest: 2
   description: ''
   editor: []
-  number: 1
+  num: 1
   primary: true
-  publication_date: 1623-01-01
+  published: 1623-01-01
   translator: []
   verse: true
 publication_date: 1623-01-01

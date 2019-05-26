@@ -25,8 +25,10 @@ description: |
 edition:
     primary: true
     title: null
-    number: 1
-    publication_date: 1899-01-01
+    tochide: false
+    num: 1
+    deepest: 1
+    published: 1899-01-01
     translator: []
     editor: []
     author:
