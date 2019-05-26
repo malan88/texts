@@ -27,7 +27,7 @@ edition:
     primary: true
     title: null
     num: 1
-    deepest:
+    deepest: 2
     published: 1904-01-01
     translator:
         - name: Constance Garnett
