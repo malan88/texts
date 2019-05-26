@@ -1,9 +1,9 @@
 toc:
-    'ACT':
+    'INDUCTION|ACT':
         enum: Act
         precedence: 1
         aggregate: False
-    'SCENE':
+    'PROLOGUE|ACT|SCENE':
         enum: Scene
         precedence: 2
         aggregate: False

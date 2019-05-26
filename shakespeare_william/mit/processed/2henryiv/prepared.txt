@@ -1,4 +1,4 @@
-None
+INDUCTION
 [_Warkworth. Before the castle_]
 [_Enter RUMOUR, painted full of tongues_]
 RUMOUR.
@@ -1235,8 +1235,7 @@ I pray thee, loving wife, and gentle daughter,
 Give even way unto my rough affairs:
 Put not you on the visage of the times
 And be like them to Percy troublesome.
-LADY
-NORTHUMBERLAND.
+LADY NORTHUMBERLAND.
 I have given over, I will speak no more:
 Do what you will; your wisdom be your guide.
 NORTHUMBERLAND.
@@ -1287,8 +1286,7 @@ With new lamenting ancient oversights.
 But I must go and meet with danger there,
 Or it will seek me in another place
 And find me worse provided.
-LADY
-NORTHUMBERLAND.
+LADY NORTHUMBERLAND.
 O, fly to Scotland,
 Till that the nobles and the armed commons
 Have of their puissance made a little taste.

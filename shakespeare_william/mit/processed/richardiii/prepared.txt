@@ -4633,8 +4633,7 @@ Ere I let fall the windows of mine eyes:
 Sleeping and waking, O, defend me still!
 [_Sleeps_]
 [_Enter the Ghost of Prince Edward, son to King Henry VI_]
-Ghost
-OF PRINCE EDWARD.
+GHOST OF PRINCE EDWARD.
 [To KING RICHARD III]
 Let me sit heavy on thy soul to-morrow!
 Think, how thou stab'dst me in my prime of youth
@@ -4644,8 +4643,7 @@ Be cheerful, Richmond; for the wronged souls
 Of butcher'd princes fight in thy behalf
 King Henry's issue, Richmond, comforts thee.
 [_Enter the Ghost of King Henry VI_]
-Ghost
-OF KING HENRY VI.
+GHOST OF KING HENRY VI.
 [To KING RICHARD III]
 When I was mortal, my anointed body
 By thee was punched full of deadly holes
@@ -4693,8 +4691,7 @@ Think on Lord Hastings: despair, and die!
 Quiet untroubled soul, awake, awake!
 Arm, fight, and conquer, for fair England's sake!
 [_Enter the Ghosts of the two young Princes_]
-Ghosts
-OF YOUNG PRINCES.
+GHOSTS OF YOUNG PRINCES.
 [To KING RICHARD III]
 Dream on thy cousins smother'd in the Tower:
 Let us be led within thy bosom, Richard,
@@ -4718,8 +4715,7 @@ Thou quiet soul, sleep thou a quiet sleep
 Dream of success and happy victory!
 Thy adversary's wife doth pray for thee.
 [_Enter the Ghost of BUCKINGHAM_]
-Ghost
-OF BUCKINGHAM.
+GHOST OF BUCKINGHAM.
 [To KING RICHARD III]
 The last was I that helped thee to the crown;
 The last was I that felt thy tyranny:

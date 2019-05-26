@@ -123,7 +123,7 @@ The pangs of barr'd affections, though the king
 Hath charged you should not speak together.
 [_Exit_]
 IMOGEN.
-O
+O,
 Dissembling courtesy! How fine this tyrant
 Can tickle where she wounds! My dearest husband,
 I something fear my father's wrath; but nothing--
@@ -1475,7 +1475,6 @@ CLOTEN.
 I'll be revenged:
 'His meanest garment!' Well.
 [_Exit_]
-CYMBELINE
 SCENE IV. Rome. Philario's house.
 [_Enter POSTHUMUS and PHILARIO_]
 POSTHUMUS LEONATUS.
