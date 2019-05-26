@@ -257,6 +257,7 @@ def readout(lines, matches):
             """
             current = line['enum']
             if current == 'blank':
+                self.prevline = current
                 return
             if isinstance(current, int):
                 # if the current enum is an int it is a toc
@@ -270,7 +271,7 @@ def readout(lines, matches):
                 self.prevline = current
                 return
             # test if it is a first line or not
-            enum = 'fl' if self.prevline == 'blank' else 'l'
+            enum = 'fl' if self.prevline != 'l' else 'l'
             self.TEXT(line, enum)
             self.prevline = enum
 
