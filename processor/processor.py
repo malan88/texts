@@ -286,27 +286,26 @@ def readout(lines, matches):
     return switcher.lines
 
 
+def main(path):
+    path = path.rstrip('/')
+    fin = io.open(f'{path}/prepared.txt', 'rt', encoding='utf-8-sig')
+    fout =  open(f'{path}/lines.json', 'wt')
+    matches = yaml.load(open(f'{path}/matches.yml', 'rt'),
+                        Loader=yaml.FullLoader)
+
+    linesin = readin(fin, matches)
+    linesout = readout(linesin, matches)
+    fout.write(json.dumps(linesout))
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         """Process the preformatted and preprocessed
         (with preprocessor.py) texts into a json format for the insert scripts
         to process into the ICC's database.
         """)
-    parser.add_argument('-i', '--input', action='store', type=str,
-                        help="The input file. Defaults to stdin.")
-    parser.add_argument('-o', '--output', action='store', type=str,
-                        help="The output file. Defaults to stdout.")
-    parser.add_argument('-m', '--matches', action='store', type=str,
-                        required=True, help="The regex matches yaml file "
-                        "(required). See the documentation on Processing Texts "
-                        "for more information.")
-    args = parser.parse_args()
-
-    FIN = io.open(args.input, 'r', encoding='utf-8-sig') if args.input\
-        else open(args.input, 'rt', encoding='utf-8-sig')
-    FOUT = sys.stdout if not args.output else open(args.output, 'wt')
-    MATCHES = yaml.load(open(args.matches, 'rt'), Loader=yaml.FullLoader)
-
-    linesin = readin(FIN, MATCHES)
-    linesout = readout(linesin, MATCHES)
-    FOUT.write(json.dumps(linesout))
+    parser.add_argument('path', action='store', type=str,
+                        help="The directory where the prepared.txt and "
+                        "matches.yml file are, to which the lines.json file "
+                        "will be written.")
+    main(parser.parse_args().path)
