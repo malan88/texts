@@ -237,6 +237,10 @@ def readout(lines, matches):
                             for value in toc.values()}
             self.maxtoc = max(self.tocnums.keys())
 
+            specials = matches.get('specials', {})
+            self.SPECIALS.extend([special['enum'] for special in
+                                  specials.values()])
+
         def update_toc_nums(self, precedence):
             """Update the table of contents numbers. If line['enum'] is not an
             integer, will cause errors. Not to be suppressed.
@@ -271,9 +275,9 @@ def readout(lines, matches):
                 self.prevline = current
                 return
             # test if it is a first line or not
-            enum = 'fl' if self.prevline != 'l' else 'l'
+            enum = 'fl' if self.prevline != 'text' else 'l'
             self.TEXT(line, enum)
-            self.prevline = enum
+            self.prevline = current
 
     switcher = Switch(matches)
     for line in lines:
