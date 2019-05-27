@@ -3,7 +3,7 @@ toc:
         enum: Act
         precedence: 1
         aggregate: False
-        'PROLOGUE|EPILOGUE|SCENE':
+    'PROLOGUE|ACT|SCENE|CHORUS':
         enum: Scene
         precedence: 2
         aggregate: False

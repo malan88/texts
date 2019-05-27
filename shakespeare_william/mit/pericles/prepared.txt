@@ -609,6 +609,7 @@ Which welcome we'll accept; feast here awhile,
 Until our stars that frown lend us a smile.
 [_Exeunt_]
 ACT II
+CHORUS
 [_Enter GOWER_]
 GOWER.
 Here have you seen a mighty king
@@ -1365,6 +1366,7 @@ It pleaseth me so well, that I will see you wed;
 And then with what haste you can get you to bed.
 [_Exeunt_]
 ACT III
+CHORUS
 [_Enter GOWER_]
 GOWER.
 Now sleep y-slaked hath the rout;
@@ -1430,7 +1432,7 @@ In your imagination hold
 This stage the ship, upon whose deck
 The sea-tost Pericles appears to speak.
 [_Exit_]
-SCENE I:
+SCENE I.
 [_Enter PERICLES, on shipboard_]
 PERICLES.
 Thou god of this great vast, rebuke these surges,
@@ -1808,6 +1810,7 @@ My recompense is thanks, that's all;
 Yet my good will is great, though the gift small.
 [_Exeunt_]
 ACT IV
+CHORUS
 [_Enter GOWER_]
 GOWER.
 Imagine Pericles arrived at Tyre,
@@ -2303,7 +2306,7 @@ You are like one that superstitiously
 Doth swear to the gods that winter kills the flies:
 But yet I know you'll do as I advise.
 [_Exeunt_]
-SCENE IV:
+SCENE IV.
 [_Enter GOWER, before the monument of MARINA at Tarsus_]
 GOWER.
 Thus time we waste, and longest leagues make short;
@@ -2657,6 +2660,7 @@ doubt not but I shall find them tractable enough.
 Come, I'll do for thee what I can; come your ways.
 [_Exeunt_]
 ACT V
+CHORUS
 [_Enter GOWER_]
 GOWER.
 Marina thus the brothel 'scapes, and chances
@@ -3097,7 +3101,7 @@ Sir, lend me your arm.
 PERICLES.
 Come, my Marina.
 [_Exeunt_]
-SCENE II:
+SCENE II.
 [_Enter GOWER, before the temple of DIANA at Ephesus_]
 GOWER.
 Now our sands are almost run;

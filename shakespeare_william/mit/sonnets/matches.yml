@@ -1,5 +1,5 @@
 toc:
     "Sonnet [IVXLC]":
-        display: Sonnet
+        enum: Sonnet
         precedence: 1
         aggregate: False

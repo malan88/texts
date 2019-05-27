@@ -3,10 +3,10 @@ toc:
         enum: Act
         precedence: 1
         aggregate: False
-        'PROLOGUE|EPILOGUE|SCENE':
+    'PROLOGUE|SCENE|CHORUS':
         enum: Scene
         precedence: 2
         aggregate: False
 specials:
-    '^(?!ACT)[A-Z ]+\.$':
+    '^(?!I\.)[A-Z ]+\.$':
         enum: char
