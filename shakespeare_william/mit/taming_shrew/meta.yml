@@ -65,9 +65,9 @@ edition:
     name: William Shakespeare
   description: ''
   editor: []
-  number: 1
+  num: 1
   primary: true
-  publication_date: 1623-01-01
+  published: 1623-01-01
   translator: []
   verse: true
 publication_date: 1623-01-01
