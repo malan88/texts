@@ -39,8 +39,8 @@ description: |
 edition:
     primary: true
     title: King James Bible
+    verse: true
     num: 1
-    deepest: 3
     published: 1611-01-01
     description: |
         The King James Version (KJV), also known as the King James Bible
