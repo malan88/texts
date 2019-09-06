@@ -1,0 +1,5 @@
+toc:
+    "BOOK":
+        enum: Book
+        precedence: 1
+        aggregate: False
