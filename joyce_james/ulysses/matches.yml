@@ -1,0 +1,9 @@
+toc:
+    "— [I]+ —":
+        enum: Part
+        precedence: 1
+        aggregate: False
+    "\[ [0-9]+ \]":
+        enum: Episode
+        precedence: 2
+        aggregate: False
